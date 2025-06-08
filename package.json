@@ -4,9 +4,9 @@
   "description": "data base for swift buy",
   "main": "index.js",
   "scripts": {
-  "start": "node index.js",
-  "dev": "nodemon index.js"
-},
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pavanKanthamRaju/databaseSB.git"
@@ -21,9 +21,10 @@
   },
   "homepage": "https://github.com/pavanKanthamRaju/databaseSB#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.3.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
