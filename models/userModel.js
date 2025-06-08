@@ -11,8 +11,20 @@ const userSchema = mongoose.Schema({
     },
     password:{
         type: String,
-        required: true
+        required: true,
+    },
+    cart:[
+        {
+        productId : {
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'Product',
+        },
+        quantity:{
+            type:Number,
+            default:1
+        }
     }
+    ]
 })
 userSchema.pre("save", async function(next){
     if(!this.isModified('password')){
@@ -29,6 +41,13 @@ userSchema.pre("save", async function(next){
         console.log(`uspwd ${userPassword}`)
         return candidatePassword === userPassword;
 
+    }
+    userSchema.methods.generateToken =function(){
+        const jwt = require('jsonwebtoken');
+        return jwt.sign({id:this._id},process.env.JWT_SECRET, {
+            expiresIn:'7d'
+        })
+        
     }
     const User = mongoose.model("User", userSchema);
     module.exports = User

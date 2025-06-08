@@ -10,7 +10,8 @@ console.log( `user checked....${user}`)
 if(!user || !await user.correctPassword(password, user.password)){
     return res.status(401).json({message : "incorrect email or password"})
 }
-res.status(200).json({status:"success"})
+const token = user.generateToken();
+res.status(200).json({status:"success", token, user})
 }
 exports.register = async(req,res)=>{
 
