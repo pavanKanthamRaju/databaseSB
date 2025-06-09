@@ -10,23 +10,33 @@ const orderSchema = mongoose.Schema({
     items:[{
 Product:{
     type: mongoose.Schema.Types.ObjectId,
-    quantity:Number,
-    price:Number
+    ref:'Product',
+    required:true
 },
+quantity:{
+    type:Number,
+    required:true
+},
+price:{
+    type:Number,
+    required:true
+}
+}],
+
 totalAmount:Number,
-shippingaddress:{
+shippingAddress:{
     fullName:String,
     phone:String,
     street:String,
     city:String,
-    postalcode:String,
+    postalCode:String,
     state:String,
     country:String
 
 },
-paymentMethos:{
+paymentMethod:{
     type:String,
-    enum:["COD","Strype","PayPal"],
+    enum:["COD","Stripe","PayPal","Razorpay"],
     default:"COD"
 },
 status:{
@@ -34,11 +44,17 @@ status:{
     default:'pending',
     
 },
+razorpayOrderId:String,
+razorPayPaymentId:String,
+razorpaySignature:String,
+paymentIntentId:{
+    type:String
+},
 createdAt: {
     type:Date,
     default: Date.now
 }
-    }]
+    
 })
 const Order = mongoose.model("Order",orderSchema)
 module.exports= Order

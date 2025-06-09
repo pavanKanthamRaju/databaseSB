@@ -3,6 +3,7 @@ const authRoute = require("./routes/authRoute");
 const productRoute = require("./routes/productRoute");
 const cartRoutes = require("./routes/cartRouts");
 const orderRoutes = require("./routes/orderroutes");
+const paymentRouts = require("./routes/paymentRoutes")
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use('/api/auth', authRoute)
 app.use('/api/products', productRoute)
 app.use('/api/cart',cartRoutes)
 app.use("/api/order",orderRoutes)
+app.use("/api/payments", paymentRouts)
 app.get('/check', (req, res) => {
   res.send('API is running...');
 });
