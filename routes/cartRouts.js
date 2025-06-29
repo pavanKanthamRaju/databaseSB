@@ -8,6 +8,9 @@ const {
 
 router.post("/add", protect, cartController.addToCart);
 router.delete("/remove/:productId", protect, cartController.removeFromCart);
+router.post("/clearCart", protect, cartController.clearCart);
 router.get("/:userId", protect, cartController.getcart);
+
+
 
 module.exports = router;
